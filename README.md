@@ -25,7 +25,7 @@ venv\Scripts\activate
 
 Затем скачайте библиотеку [gdal](https://github.com/ilyaognev69/AlyansIT/releases/download/GDAL/GDAL-3.9.2-cp39-cp39-win_amd64.whl) (почему-то gdal от самого django работает не корректно)
 ```bash
-pip install <путь к скачанной библиотеке>
+pip install <путь к скачанной библиотеке>\GDAL-3.9.2-cp39-cp39-win_amd64.whl
 pip install psycopg2-binary
 pip install Django
 pip install djangorestframework
