@@ -39,6 +39,9 @@ pip install djangorestframework
 CREATE USER geodjango WITH PASSWORD '12345';
 CREATE DATABASE geodjango OWNER geodjango ENCODING 'UTF8';
 ALTER USER geodjango WITH SUPERUSER;
+```
+Теперь вам нужно заново войти в SQLShell, но уже в только созданную БД. После чего введите эту команду:
+```bash
 CREATE EXTENSION postgis;
 ```
 7. И последнее:
