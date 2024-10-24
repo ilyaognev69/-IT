@@ -65,15 +65,11 @@
       }).addTo(map);
 
       // Координаты полигона, переданные из Django
-      var polygonCoords = {{ coords|safe }};
+	var polygonCoords = {{ coords|safe }};
 
       // Проверяем, есть ли координаты
-      if (polygonCoords.length > 0) {
-        var polygon = L.polygon(polygonCoords).addTo(map);
-        polygon.bindPopup("Last Polygon").openPopup();
-      } else {
-        alert("Нет доступных полигонов в базе данных.");
-      }
+	var polygon = L.polygon(polygonCoords).addTo(map);
+	polygon.bindPopup("Last Polygon").openPopup();
 </script>
 </body>
 </html>
