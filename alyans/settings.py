@@ -92,7 +92,7 @@ DATABASES = {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'geodjango',
 		'USER': 'geodjango',
-		'PASSWORD': '#I1l2y3a4',
+		'PASSWORD': '12345',
 		'PORT': '5432',
 		'HOST': 'localhost'
     }
