@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить полигон</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <h2 class="mt-4">Добавить полигон</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+			<div class='text-danger'>{{ form.name.errors }}</div>
+        </div>
+        <div class="form-group">
+            {{ form.coordinates.label_tag }}
+            {{ form.coordinates }}
+			<div class="text-danger">{{ form.coordinates.errors }}</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Добавить</button>
+    </form>
+	<div id="map" style="height: 500px;"></div>
+
+    <h3 class="mt-4">Список полигонов</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Полигон (координаты)</th>
+                <th>Пересекает антимеридиан</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for polygon in polygons %}
+            <tr>
+                <td>{{ polygon.name }}</td>
+                <td>
+                    <ul>
+                    {% for ring in polygon.polygon.coords %}
+                        <li>
+                        {{ ring }}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </td>
+                <td>{{ polygon.crosses_antimeridian }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+      var map = L.map('map').setView([69.3493386397765, 174.19921875000003], 4);
+
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Alyans'
+      }).addTo(map);
+
+      // Координаты полигона, переданные из Django
+      var polygonCoords = {{ coords|safe }};
+
+      // Проверяем, есть ли координаты
+      if (polygonCoords.length > 0) {
+        var polygon = L.polygon(polygonCoords).addTo(map);
+        polygon.bindPopup("Last Polygon").openPopup();
+      } else {
+        alert("Нет доступных полигонов в базе данных.");
+      }
+</script>
+</body>
+</html>
