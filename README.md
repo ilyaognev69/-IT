@@ -46,9 +46,9 @@ CREATE EXTENSION postgis;
 ```
 7. И последнее:
 
-Просто все файлы из github перекидываем в проект и запускаем
+Скачиваем все файлы из репазитория в zip формате и извлекаем в наш проект (то есть в geodjango). Затем в термнале вводим следующий код:
 ```bash
-cd AlyansIT
+cd AlyansIT-main
 python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
