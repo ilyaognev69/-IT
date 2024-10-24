@@ -20,9 +20,10 @@ python -m venv venv
 venv\Scripts\activate
 ```
 5. Теперь устанавливаем нужные библиотеки:
-Сначало скачайте библиотеку [gdal](https://github.com/ilyaognev69/AlyansIT/releases/download/GDAL/GDAL-3.9.2-cp39-cp39-win_amd64.whl) (почему-то gdal от самого django работает не корректно)
 
-Заодно и [это](https://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe) (оно пригодится в дальнейшем). Как скачаете сразу установите на диск C (то есть чтобы в диске C находились все файлы, т.к. в settings.py указан путь именно через диск C)
+Снчало скачайте [это](https://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe) (оно пригодится в дальнейшем). Как скачаете сразу установите на диск C (то есть чтобы в диске C находились все файлы, т.к. в settings.py указан путь именно через диск C)
+
+Затем скачайте библиотеку [gdal](https://github.com/ilyaognev69/AlyansIT/releases/download/GDAL/GDAL-3.9.2-cp39-cp39-win_amd64.whl) (почему-то gdal от самого django работает не корректно)
 ```bash
 pip install <путь к скачанной библиотеке>
 pip install psycopg2-binary
@@ -30,6 +31,7 @@ pip install Django
 pip install djangorestframework
 ```
 6. Скачиваем PostgreSQL и создаем новую БД:
+
 Скачиваем PostgrSQL и устанваливаем. Затем в StackBuilder доустанавливаем Postgis
 
 Открываем SQLShell и вводим следующие команды
@@ -40,6 +42,7 @@ ALTER USER geodjango WITH SUPERUSER;
 CREATE EXTENSION postgis;
 ```
 7. И последнее:
+
 Просто все файлы из github перекидываем в проект и запускаем
 ```bash
 cd AlyansIT
@@ -49,4 +52,5 @@ python manage.py runserver
 ```
 
 Запрсы через api находятся по ссылке http://localhost:8000/api/polygons/
+
 А просмотр конкретного полигона по ссылке http://localhost:8000/api/polygons/{id}/
